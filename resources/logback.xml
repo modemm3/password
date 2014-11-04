@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<configuration>
+    
+    <appender name="appFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>./Logs/Datamart_Partition.log</File>
+        <append>true</append>
+        <prudent>false</prudent>
+        <encoder>
+            <pattern>%d{HH:mm:ss:SSS} %5p %c{1}:%L - %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./Logs/Datamart_Partition.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+ 
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>./Logs/Datamart_Partition.%i.log.zip</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>10</maxIndex>
+		</rollingPolicy>        
+    </appender>
+    <appender name="appErrorFacts" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>./Logs/Datamart_Partition_ErrorFacts.log</File>
+        <append>true</append>
+        <prudent>false</prudent>
+        <encoder>
+            <pattern>%d{HH:mm:ss:SSS} %5p %c{1}:%L - %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./Logs/Datamart_Partition_ErrorFacts.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+ 
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>./Logs/Datamart_Partition_ErrorFacts.%i.log.zip</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>10</maxIndex>
+		</rollingPolicy>        
+    </appender>
+    <appender name="appClients" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>./Logs/Datamart_Partittion_Clients.log</File>
+        <append>true</append>
+        <prudent>false</prudent>
+        <encoder>
+            <pattern>%d{HH:mm:ss:SSS} %5p %c{1}:%L - %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./Logs/Datamart_Partition_Clients.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+ 
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>./Logs/Datamart_Partition_Clients.%i.log.zip</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>10</maxIndex>
+		</rollingPolicy>        
+    </appender>
+    <appender name="appBillingCharges" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>./Logs/Datamart_Partition_BillinCharges.log</File>
+        <append>true</append>
+        <prudent>false</prudent>
+        <encoder>
+            <pattern>%d{HH:mm:ss:SSS} %5p %c{1}:%L - %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./Logs/Datamart_Partition_BillinCharges.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+ 
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>./Logs/Datamart_Partition_BillinCharges.%i.log.zip</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>10</maxIndex>
+		</rollingPolicy>        
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %5p %c{1}:%L - %msg%n</pattern>
+        </encoder>
+    </appender>
+     
+    <logger name="com.cm.datamart.ErrorFacts" level="DEBUG">
+        <appender-ref ref="appErrorFacts"/>
+    </logger>
+    <logger name="com.cm.datamart.Clients" level="DEBUG">
+        <appender-ref ref="appClients"/>
+    </logger>
+    <logger name="com.cm.datamart.BillingCharges" level="DEBUG">
+        <appender-ref ref="appBillingCharges"/>
+    </logger>
+ 
+    <root level="INFO">
+        <appender-ref ref="appFile"/>        
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
