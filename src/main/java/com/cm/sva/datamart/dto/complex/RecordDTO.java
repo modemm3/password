@@ -1,27 +1,27 @@
-package com.cm.sva.datamart.dto;
+package com.cm.sva.datamart.dto.complex;
 
-public class RecordDTO implements DTO {
+import com.cm.sva.datamart.dto.ConfigDTO;
+import com.cm.sva.datamart.dto.DTO;
+import com.cm.sva.datamart.dto.UserDTO;
 
+public class RecordDTO implements DTO{
 	private Integer id;
 	private String name;
 	private String description;
-	private Integer userId;
-	private String configId;
+	private UserDTO user;
+	private ConfigDTO config;
 	public RecordDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	public RecordDTO(Integer id, String name, String description,
-			Integer userId, String configId) {
+	public RecordDTO(Integer id, String name, String description, UserDTO user,
+			ConfigDTO config) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.userId = userId;
-		this.configId = configId;
+		this.user = user;
+		this.config = config;
 	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -40,22 +40,18 @@ public class RecordDTO implements DTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Integer getUserId() {
-		return userId;
+	public UserDTO getUser() {
+		return user;
 	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
-	
-	public String getConfigId() {
-		return configId;
+	public ConfigDTO getConfig() {
+		return config;
 	}
-
-	public void setConfigId(String configId) {
-		this.configId = configId;
+	public void setConfig(ConfigDTO config) {
+		this.config = config;
 	}
-
-	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("RecordDTO [id=");
@@ -64,11 +60,13 @@ public class RecordDTO implements DTO {
 		builder.append(name);
 		builder.append(", description=");
 		builder.append(description);
-		builder.append(", userId=");
-		builder.append(userId);
-		builder.append(", configId=");
-		builder.append(configId);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append(", config=");
+		builder.append(config);
 		builder.append("]");
 		return builder.toString();
 	}
+	
+	
 }

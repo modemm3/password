@@ -11,21 +11,25 @@
 package com.cm.sva.datamart.gui;
 
 import java.awt.Color;
-import java.awt.Label;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import org.edisoncor.gui.label.LabelTask;
 
 import com.cm.sva.datamart.dao.ConfigDAO;
 import com.cm.sva.datamart.dao.ItemsDAO;
 import com.cm.sva.datamart.dao.RecordDAO;
+import com.cm.sva.datamart.dao.UserDAO;
 import com.cm.sva.datamart.dto.ConfigDTO;
 import com.cm.sva.datamart.dto.ItemsDTO;
 import com.cm.sva.datamart.dto.RecordDTO;
+import com.cm.sva.datamart.dto.UserDTO;
+import com.cm.sva.datamart.gui.components.Label;
 
 /**
  *
@@ -34,106 +38,40 @@ import com.cm.sva.datamart.dto.RecordDTO;
 public class Passwords extends javax.swing.JFrame {
 
 
+	private JPanel panelNice1;
+    private JPanel panelNice2;
+    private JPanel panelNice3;
+    private JPanel panelNice4;
+    private JPanel panelNice5;
+    Passwords p=this;
 	private int top=0;
     public Passwords() {
         initComponents();
         try{
-        createConfig();
-//        createLabel2();
-//        createLabel3();
+        	config();
+	        this.setVisible(true);
+	        panelNice1.setBackground(new Color(120, 120, 120));
+	        panelNice2.setBackground(new Color(120, 120, 120));
+	        panelNice3.setBackground(new Color(120, 120, 120));
+	        panelNice4.setBackground(new Color(120, 120, 120));
+	        panelNice5.setBackground(new Color(120, 120, 120));        
+	        panelNice1.repaint();
+	        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
         catch(Exception ex){
         	ex.printStackTrace();
         }
     }
 
-    public final void createConfig() throws Exception{
-    	final ConfigDAO configDAO= new ConfigDAO();
-    	List<ConfigDTO> listConfigDTO= configDAO.getListConfig(2);
-        for(final ConfigDTO configDTO:listConfigDTO){
-        	LabelTask config= new LabelTask(configDTO.getName());
-        	config.addMouseListener(new Event() {
-				
-				@Override
-				public void execute() {
-					RecordDAO recordDAO= new RecordDAO();
-					try{
-						List<RecordDTO> listRecordDTO=recordDAO.getListRecord(1, configDTO.getId());
-						for(final RecordDTO recordDTO:listRecordDTO){
-							LabelTask record= new LabelTask(recordDTO.getName());
-							record.addMouseListener(new Event() {
-								@Override
-								public void execute() {
-									ItemsDAO itemsDAO= new ItemsDAO();
-									try{
-										List <ItemsDTO> listItemsDTO=itemsDAO.getListRecord(recordDTO.getId());
-										for(final ItemsDTO itemsDTO:listItemsDTO){
-											ConfigDTO configDTO= new ConfigDTO();
-											configDTO=configDAO.getConfigById(itemsDTO.getConfigId());
-											JLabel items= new JLabel(configDTO.getName());
-											items.setBounds(10, top+10, 200, 25);
-											panelNice5.add(items);
-											if(configDTO.getSecret().booleanValue()){
-												JPasswordField itemsValue= new JPasswordField(itemsDTO.getValue());
-												itemsValue.setBounds(210, top+10, 200, 25);
-												panelNice5.add(itemsValue);
-											}
-											else{
-												JTextField itemsValue= new JTextField(itemsDTO.getValue());
-												itemsValue.setBounds(210, top+10, 200, 25);
-												panelNice5.add(itemsValue);
-											}
-											top+=60;
-										}
-									}
-									catch(Exception ex){
-										ex.printStackTrace();
-									}
-								}
-							});
-							panelNice2.add(record);
-						}
-						
-					}
-					catch(Exception ex){
-						ex.printStackTrace();
-					}
-				}
-			});
-            panelNice1.add(config);
-            panelNice1.setBackground(new Color(128, 128, 128));
-            panelNice2.setBackground(new Color(128, 128, 128));
-            panelNice3.setBackground(new Color(128, 128, 128));
-            panelNice4.setBackground(new Color(128, 128, 128));
-            panelNice5.setBackground(new Color(128, 128, 128));
-        }
-    }
-    public final void createLabel2(){
-        for(int i=0;i<5;i++){
-        	LabelTask l= new LabelTask();
-            panelNice2.add(new LabelTask("LABEL "+i));
-        }
-    }
-    public final void createLabel3(){
-        for(int i=0;i<5;i++){
-            Label l= new Label("LABEL "+i);
-        
-//            l.setSize(100,25);
-//            l.setBounds(10, 10, 10, 10);
-             
-//            panelNice5.add(l, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-        }
-    }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelNice1 = new org.edisoncor.gui.panel.PanelNice();
-        panelNice2 = new org.edisoncor.gui.panel.PanelNice();
-        panelNice3 = new org.edisoncor.gui.panel.PanelNice();
-        panelNice4 = new org.edisoncor.gui.panel.PanelNice();
-        panelNice5 = new org.edisoncor.gui.panel.PanelNice();
+        panelNice1 = new JPanel();
+        panelNice2 = new JPanel();
+        panelNice3 = new JPanel();
+        panelNice4 = new JPanel();
+        panelNice5 = new JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,7 +112,7 @@ public class Passwords extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelNice1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(panelNice2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelNice2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelNice3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -192,47 +130,141 @@ public class Passwords extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Passwords.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Passwords.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Passwords.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Passwords.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Passwords.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Passwords.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Passwords.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Passwords.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        java.awt.EventQueue.invokeLater(new Runnable() {
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
+//            public void run() {
                 new Passwords().setVisible(true);
-            }
-        });
+//            }
+//        });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.edisoncor.gui.panel.PanelNice panelNice1;
-    private org.edisoncor.gui.panel.PanelNice panelNice2;
-    private org.edisoncor.gui.panel.PanelNice panelNice3;
-    private org.edisoncor.gui.panel.PanelNice panelNice4;
-    private org.edisoncor.gui.panel.PanelNice panelNice5;
-    // End of variables declaration//GEN-END:variables
+
+    
+    private void config(){
+    	final ConfigDAO configDAO= new ConfigDAO();
+    	panelNice1.removeAll();
+    	try {
+			List<ConfigDTO> listConfigDTO= configDAO.getListConfig(2);
+	        for(final ConfigDTO configDTO:listConfigDTO){
+	        	System.out.println("created config");
+	        	Label config= new Label(configDTO);
+	        	config.addMouseListener(new EventsConfig());
+	        	panelNice1.add(config);	
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    }
+    private void record(ConfigDTO configDTO) throws Exception{
+    	RecordDAO recordDAO= new RecordDAO();
+    	List<RecordDTO> listRecordDTO=recordDAO.getListRecord(1, configDTO.getId());
+    	UserDAO userDAO= new UserDAO();
+    	ConfigDAO configDAO= new ConfigDAO();
+		panelNice2.removeAll();
+		for(final RecordDTO recordDTO:listRecordDTO){
+			System.out.println("created record");
+			com.cm.sva.datamart.dto.complex.RecordDTO rec= new com.cm.sva.datamart.dto.complex.RecordDTO();
+			rec.setDescription(recordDTO.getDescription());
+			rec.setId(recordDTO.getId());
+			rec.setName(recordDTO.getName());
+			UserDTO userDTO= new UserDTO();
+			userDTO.setId(recordDTO.getUserId());
+			userDTO=userDAO.getUser(userDTO);
+			rec.setUser(userDTO);
+			ConfigDTO config= new ConfigDTO();
+			config=configDAO.getConfigById(recordDTO.getConfigId());
+			rec.setConfig(config);
+			Label record= new Label(rec);
+			record.addMouseListener(new EventsRecord());
+			panelNice2.add(record);
+		}
+//		panelNice2.repaint();
+//		panelNice2.setVisible(true);		
+    }
+    private void items(com.cm.sva.datamart.dto.complex.RecordDTO recordDTO){
+    	ItemsDAO itemsDAO= new ItemsDAO();
+    	ConfigDAO configDAO= new ConfigDAO();
+		try{
+			List <ItemsDTO> listItemsDTO=itemsDAO.getListRecord(recordDTO.getId());
+			panelNice5.removeAll();
+			top=0;
+			for(final ItemsDTO itemsDTO:listItemsDTO){
+				System.out.println("created items");
+				ConfigDTO configDTO= new ConfigDTO();
+				configDTO=configDAO.getConfigById(itemsDTO.getConfigId());
+				JLabel items= new JLabel(configDTO.getName());
+				items.setBounds(10, top+10, 200, 25);
+				panelNice5.add(items);
+				if(configDTO.getSecret().booleanValue()){
+					JPasswordField itemsValue= new JPasswordField(itemsDTO.getValue());
+					itemsValue.setBounds(210, top+10, 200, 25);
+					panelNice5.add(itemsValue);
+				}
+				else{
+					JTextField itemsValue= new JTextField(itemsDTO.getValue());
+					itemsValue.setBounds(210, top+10, 200, 25);
+					panelNice5.add(itemsValue);
+				}
+				top+=60;
+			}
+			panelNice5.repaint();
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}    	
+    }
+    class EventsConfig extends MouseAdapter{
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if(e.getClickCount()==1){
+				panelNice2.removeAll();
+				panelNice2.setLayout(new java.awt.FlowLayout());
+				try {
+					record((ConfigDTO) ((Label) e.getSource()).getO());
+					panelNice2.repaint();
+					panelNice2.setVisible(true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+			p.repaint();
+			
+		}
+    }
+    class EventsRecord extends MouseAdapter{
+    	@Override
+    	public void mouseClicked(MouseEvent e) {
+    		if(e.getClickCount()==1){
+    			panelNice5.removeAll();
+    			items((com.cm.sva.datamart.dto.complex.RecordDTO) ((Label) e.getSource()).getO());
+    			panelNice5.repaint();
+    			
+    		}
+    	}
+    }
+    class EventsItems extends MouseAdapter{
+    	@Override
+    	public void mouseClicked(MouseEvent e) {
+//    		super.mouseClicked(e);
+    		System.out.println("xxx");
+    	}
+    }
 }

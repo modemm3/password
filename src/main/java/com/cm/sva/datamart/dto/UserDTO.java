@@ -1,6 +1,6 @@
 package com.cm.sva.datamart.dto;
 
-public class UserDTO {
+public class UserDTO implements DTO {
 	private Integer id;
 	private String userName;
 	private String password;
@@ -44,6 +44,10 @@ public class UserDTO {
 		builder.append(password);
 		builder.append("]");
 		return builder.toString();
+	}
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

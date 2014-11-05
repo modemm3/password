@@ -1,6 +1,6 @@
 package com.cm.sva.datamart.dto;
 
-public class ItemsDTO {
+public class ItemsDTO implements DTO{
 	private Integer id;
 	private String configId;
 	private String value;
@@ -51,6 +51,9 @@ public class ItemsDTO {
 		builder.append(recordId);
 		builder.append("]");
 		return builder.toString();
+	}
+	public String getName() {
+		return value;
 	}
 	
 }

@@ -3,6 +3,7 @@ package com.cm.sva.datamart.dao.connection;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import com.cm.sva.datamart.dao.config.ConfigurationLoader;
@@ -37,7 +38,15 @@ public class DataSource {
     }
 
     public Connection getConnection() throws SQLException {
-        return this.cpds.getConnection();
+    	Connection con=null;
+    	try {
+			Class.forName(config.getDbDriver());
+			con=DriverManager.getConnection("jdbc:postgresql://"+config.getDbUrl()+":"+config.getDbPort()+"/"+config.getDbName(),config.getDbUser(),config.getDbPassword());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+    	return con;
+//        return this.cpds.getConnection();
     }
 
 }

@@ -1,6 +1,6 @@
 package com.cm.sva.datamart.dto;
 
-public class ConfigDTO {
+public class ConfigDTO implements DTO{
 
 	private String id;
 	private String name;
