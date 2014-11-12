@@ -1,10 +1,13 @@
 package com.cm.sva.datamart.gui.components;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import org.edisoncor.gui.label.LabelTask;
 
 import com.cm.sva.datamart.dto.DTO;
 
-public class Label extends LabelTask {
+public class Label extends JLabel {
 	private static final long serialVersionUID = 1L;
 	DTO o;
 

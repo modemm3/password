@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,6 +26,7 @@ import com.cm.sva.datamart.dao.ConfigDAO;
 import com.cm.sva.datamart.dao.ItemsDAO;
 import com.cm.sva.datamart.dao.RecordDAO;
 import com.cm.sva.datamart.dao.UserDAO;
+import com.cm.sva.datamart.dao.config.ConfigurationLoader;
 import com.cm.sva.datamart.dto.ConfigDTO;
 import com.cm.sva.datamart.dto.ItemsDTO;
 import com.cm.sva.datamart.dto.RecordDTO;
@@ -75,9 +77,10 @@ public class Passwords extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panelNice1.setLayout(new java.awt.FlowLayout());
+//        panelNice1.setLayout(new java.awt.FlowLayout());
+        panelNice1.setLayout(new java.awt.GridLayout(20, 1));
 
-        panelNice2.setLayout(new java.awt.FlowLayout());
+        panelNice2.setLayout(new java.awt.GridLayout(20, 1));
 
         panelNice3.setBackground(java.awt.SystemColor.control);
 
@@ -178,6 +181,8 @@ public class Passwords extends javax.swing.JFrame {
     	UserDAO userDAO= new UserDAO();
     	ConfigDAO configDAO= new ConfigDAO();
 		panelNice2.removeAll();
+		panelNice2.setLayout(new java.awt.GridLayout(20, 1));
+		top=0;
 		for(final RecordDTO recordDTO:listRecordDTO){
 			System.out.println("created record");
 			com.cm.sva.datamart.dto.complex.RecordDTO rec= new com.cm.sva.datamart.dto.complex.RecordDTO();
@@ -192,11 +197,17 @@ public class Passwords extends javax.swing.JFrame {
 			config=configDAO.getConfigById(recordDTO.getConfigId());
 			rec.setConfig(config);
 			Label record= new Label(rec);
+			System.out.println(System.getProperty("user.dir"));
+			System.out.println(Passwords.class.getResource("/buttonDark.png"));
+//			ImageIcon image= new ImageIcon(Passwords.class.getResource("/buttonDark.png"));
+//			record.setIcon(image);
+//			record.setBounds(10, top+10, 200, 25);
 			record.addMouseListener(new EventsRecord());
 			panelNice2.add(record);
+//			top+=60;
 		}
-//		panelNice2.repaint();
-//		panelNice2.setVisible(true);		
+		panelNice2.repaint();
+		panelNice2.setVisible(true);		
     }
     private void items(com.cm.sva.datamart.dto.complex.RecordDTO recordDTO){
     	ItemsDAO itemsDAO= new ItemsDAO();

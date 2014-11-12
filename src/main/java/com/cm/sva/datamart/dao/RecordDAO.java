@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cm.sva.datamart.dao.connection.DataSource;
-import com.cm.sva.datamart.dto.ConfigDTO;
 import com.cm.sva.datamart.dto.RecordDTO;
 
 public class RecordDAO {
