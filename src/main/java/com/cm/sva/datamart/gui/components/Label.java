@@ -7,7 +7,7 @@ import org.edisoncor.gui.label.LabelTask;
 
 import com.cm.sva.datamart.dto.DTO;
 
-public class Label extends JLabel {
+public class Label extends LabelTask {
 	private static final long serialVersionUID = 1L;
 	DTO o;
 
