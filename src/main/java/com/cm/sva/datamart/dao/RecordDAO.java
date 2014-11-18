@@ -19,7 +19,7 @@ public class RecordDAO {
 		List<RecordDTO> listRecordDTO=new ArrayList<RecordDTO>();
 		try{
 				conn=DataSource.getInstance().getConnection();
-				pst=conn.prepareStatement("select fiid,fvcname,fvcdescription,fiuserid,fvcconfigid from record where fiuserid =? and fvcconfigid=?");
+				pst=conn.prepareStatement("select fiid,fvcname,fvcdescription,fiuserid,fvcconfigid,image from record where fiuserid =? and fvcconfigid=?");
 				pst.setInt(1, userId);
 				pst.setString(2, configId);
 				result=pst.executeQuery();
@@ -30,6 +30,7 @@ public class RecordDAO {
 					recordDTO.setDescription(result.getString("fvcdescription"));
 					recordDTO.setUserId(result.getInt("fiuserid"));
 					recordDTO.setConfigId(result.getString("fvcconfigid"));
+                                        recordDTO.setImage(result.getString("image"));
 					listRecordDTO.add(recordDTO);
 				}
 		}

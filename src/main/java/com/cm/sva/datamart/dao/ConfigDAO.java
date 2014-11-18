@@ -19,7 +19,7 @@ public class ConfigDAO {
 		List<ConfigDTO> listConfigDTO=new ArrayList<ConfigDTO>();
 		try{
 				conn=DataSource.getInstance().getConnection();
-				pst=conn.prepareStatement("select fvid,fvcname,fvcdescription,fbsecret from config where length(fvid)=?");
+				pst=conn.prepareStatement("select fvid,fvcname,fvcdescription,fbsecret,image from config where length(fvid)=?");
 				pst.setInt(1, length);
 				result=pst.executeQuery();
 				while(result.next()){
@@ -28,6 +28,7 @@ public class ConfigDAO {
 					configDTO.setName(result.getString("fvcname"));
 					configDTO.setDescription(result.getString("fvcdescription"));
 					configDTO.setSecret(result.getBoolean("fbsecret"));
+                                        configDTO.setImage(result.getString("image"));
 					listConfigDTO.add(configDTO);
 				}
 		}

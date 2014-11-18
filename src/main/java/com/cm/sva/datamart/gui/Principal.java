@@ -11,10 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -22,12 +19,19 @@ import com.cm.sva.datamart.dao.ConfigDAO;
 import com.cm.sva.datamart.dao.ItemsDAO;
 import com.cm.sva.datamart.dao.RecordDAO;
 import com.cm.sva.datamart.dao.UserDAO;
-import com.cm.sva.datamart.dao.config.ConfigurationLoader;
 import com.cm.sva.datamart.dto.ConfigDTO;
 import com.cm.sva.datamart.dto.ItemsDTO;
 import com.cm.sva.datamart.dto.RecordDTO;
 import com.cm.sva.datamart.dto.UserDTO;
+import com.cm.sva.datamart.gui.components.Button;
+import com.cm.sva.datamart.gui.components.HideText;
 import com.cm.sva.datamart.gui.components.Label;
+import com.cm.sva.datamart.gui.components.LabelRecord;
+import com.cm.sva.datamart.gui.components.Text;
+import java.awt.BorderLayout;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 
 /**
  *
@@ -40,6 +44,7 @@ public class Principal extends javax.swing.JFrame {
      */
     Principal p=this;
     private int top=0;
+    private Label title;
     public Principal() {
         initComponents();
         config();
@@ -49,6 +54,10 @@ public class Principal extends javax.swing.JFrame {
         panelNice4.setBackground(new Color(120, 120, 120));
         panelNice5.setBackground(new Color(120, 120, 120));        
         panelNice1.repaint();
+        ConfigDTO con= new ConfigDTO();
+        con.setName("    ");
+        title=new Label(con);
+        panelNice4.add(title);
     }
 
     /**
@@ -60,17 +69,14 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelNice1 = new org.edisoncor.gui.panel.PanelNice();
-        panelNice2 = new org.edisoncor.gui.panel.PanelNice();
         panelNice3 = new org.edisoncor.gui.panel.PanelNice();
         panelNice4 = new org.edisoncor.gui.panel.PanelNice();
         panelNice5 = new org.edisoncor.gui.panel.PanelNice();
+        panelNice6 = new org.edisoncor.gui.panel.PanelNice();
+        panelNice1 = new org.edisoncor.gui.panel.PanelNice();
+        panelNice2 = new org.edisoncor.gui.panel.PanelNice();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        panelNice1.setLayout(new java.awt.GridLayout(10, 1));
-
-        panelNice2.setLayout(new java.awt.GridLayout(1, 1));
 
         panelNice3.setBackground(java.awt.SystemColor.control);
 
@@ -83,8 +89,8 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panelNice3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelNice3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelNice4, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                    .addComponent(panelNice5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelNice4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelNice5, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelNice3Layout.setVerticalGroup(
@@ -93,7 +99,32 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelNice4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelNice5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelNice5, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        panelNice1.setLayout(new java.awt.GridLayout(20, 1));
+
+        panelNice2.setLayout(new java.awt.GridLayout(20, 1, 10, 10));
+
+        javax.swing.GroupLayout panelNice6Layout = new javax.swing.GroupLayout(panelNice6);
+        panelNice6.setLayout(panelNice6Layout);
+        panelNice6Layout.setHorizontalGroup(
+            panelNice6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNice6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelNice1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelNice2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelNice6Layout.setVerticalGroup(
+            panelNice6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNice6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelNice6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelNice2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelNice1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -103,10 +134,8 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelNice1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelNice2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelNice6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(panelNice3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -114,11 +143,10 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelNice1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                    .addComponent(panelNice2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelNice3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelNice3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelNice6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -195,18 +223,23 @@ public class Principal extends javax.swing.JFrame {
 			ConfigDTO config= new ConfigDTO();
 			config=configDAO.getConfigById(recordDTO.getConfigId());
 			rec.setConfig(config);
-			Label record= new Label(rec);
+                        rec.setImage(recordDTO.getImage());
+			LabelRecord record= new LabelRecord(rec);
 			System.out.println(System.getProperty("user.dir"));
-			System.out.println(Passwords.class.getResource("/buttonDark.png"));
+			System.out.println(Principal.class.getResource("/buttonDark.png"));
 //			ImageIcon image= new ImageIcon(Passwords.class.getResource("/buttonDark.png"));
 //			record.setIcon(image);
 //			record.setBounds(10, top+10, 200, 25);
 			record.addMouseListener(new EventsRecord());
+//                        panelNice2.set
 			panelNice2.add(record);
 //			top+=60;
 		}
+                p.repaint();
+                p.setVisible(true);
 		panelNice2.repaint();
-		panelNice2.setVisible(true);		
+		panelNice2.setVisible(true);
+                
     }
     private void items(com.cm.sva.datamart.dto.complex.RecordDTO recordDTO){
     	ItemsDAO itemsDAO= new ItemsDAO();
@@ -223,13 +256,18 @@ public class Principal extends javax.swing.JFrame {
 				items.setBounds(10, top+10, 200, 25);
 				panelNice5.add(items);
 				if(configDTO.getSecret().booleanValue()){
-					JPasswordField itemsValue= new JPasswordField(itemsDTO.getValue());
+					HideText itemsValue= new HideText(itemsDTO);
+                                        itemsValue.addMouseListener(new EventsItems());
 					itemsValue.setBounds(210, top+10, 200, 25);
+                                        Button b= new Button(itemsDTO);
+                                        b.setBounds(420,top+10,20, 25);
 					panelNice5.add(itemsValue);
+                                        panelNice5.add(b);
 				}
 				else{
-					JTextField itemsValue= new JTextField(itemsDTO.getValue());
+					Text itemsValue= new Text(itemsDTO);
 					itemsValue.setBounds(210, top+10, 200, 25);
+                                        itemsValue.addMouseListener(new EventsItems());
 					panelNice5.add(itemsValue);
 				}
 				top+=60;
@@ -264,9 +302,21 @@ public class Principal extends javax.swing.JFrame {
     	public void mouseClicked(MouseEvent e) {
     		if(e.getClickCount()==1){
     			panelNice5.removeAll();
-    			items((com.cm.sva.datamart.dto.complex.RecordDTO) ((Label) e.getSource()).getO());
+    			items((com.cm.sva.datamart.dto.complex.RecordDTO) ((LabelRecord) e.getSource()).getO());
+                        ConfigDTO con= new ConfigDTO();
+                        con.setName(((LabelRecord) e.getSource()).getO().getName());
+                        con.setImage(((LabelRecord) e.getSource()).getO().getImage());
+                        title=new Label(con);
+//                        title.setO(con);
+                        
+                        title.repaint();
+                        panelNice4.removeAll();
+                        panelNice4.setLayout(new BorderLayout());
+                        panelNice4.add(title);
     			panelNice5.repaint();
-    			
+                        panelNice4.repaint();
+                        p.repaint();
+                        p.setVisible(true);
     		}
     	}
     }
@@ -274,6 +324,24 @@ public class Principal extends javax.swing.JFrame {
     	@Override
     	public void mouseClicked(MouseEvent e) {
 //    		super.mouseClicked(e);
+            ItemsDTO itemDTO=null;
+                if(e.getSource() instanceof Text){
+                    itemDTO=(ItemsDTO) ((Text)e.getSource()).getO();
+                    Text t=(Text) e.getSource();
+                    t.setSelectionStart(0);
+                    t.setSelectionEnd(t.getText().length());
+                    
+                }
+                if(e.getSource() instanceof HideText){
+                    itemDTO=(ItemsDTO) ((HideText)e.getSource()).getO();
+                    HideText t=(HideText) e.getSource();
+                    t.setSelectionStart(0);
+                    t.setSelectionEnd(t.getText().length());
+                    
+                }
+                StringSelection selection = new StringSelection(itemDTO.getValue());
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(selection, selection);
     		System.out.println("xxx");
     	}
     }
@@ -284,5 +352,6 @@ public class Principal extends javax.swing.JFrame {
     private org.edisoncor.gui.panel.PanelNice panelNice3;
     private org.edisoncor.gui.panel.PanelNice panelNice4;
     private org.edisoncor.gui.panel.PanelNice panelNice5;
+    private org.edisoncor.gui.panel.PanelNice panelNice6;
     // End of variables declaration//GEN-END:variables
 }

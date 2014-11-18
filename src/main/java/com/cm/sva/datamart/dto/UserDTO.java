@@ -49,5 +49,9 @@ public class UserDTO implements DTO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    public String getImage() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 	
 }

@@ -10,17 +10,19 @@ public class RecordDTO implements DTO{
 	private String description;
 	private UserDTO user;
 	private ConfigDTO config;
+        private String image;
 	public RecordDTO() {
 		super();
 	}
 	public RecordDTO(Integer id, String name, String description, UserDTO user,
-			ConfigDTO config) {
+			ConfigDTO config,String image) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.user = user;
 		this.config = config;
+                this.image=image;
 	}
 	public Integer getId() {
 		return id;
@@ -64,9 +66,21 @@ public class RecordDTO implements DTO{
 		builder.append(user);
 		builder.append(", config=");
 		builder.append(config);
-		builder.append("]");
+		builder.append(", image=");
+		builder.append(image);
+                builder.append("]");
 		return builder.toString();
 	}
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+
 	
 	
 }

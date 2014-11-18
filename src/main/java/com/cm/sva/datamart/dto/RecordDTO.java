@@ -7,19 +7,21 @@ public class RecordDTO implements DTO {
 	private String description;
 	private Integer userId;
 	private String configId;
+        private String image;
 	public RecordDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public RecordDTO(Integer id, String name, String description,
-			Integer userId, String configId) {
+			Integer userId, String configId,String image) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.userId = userId;
 		this.configId = configId;
+                this.image=image;
 	}
 
 	public Integer getId() {
@@ -68,7 +70,19 @@ public class RecordDTO implements DTO {
 		builder.append(userId);
 		builder.append(", configId=");
 		builder.append(configId);
+		builder.append(", image=");
+		builder.append(image);                
 		builder.append("]");
 		return builder.toString();
 	}
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+
 }

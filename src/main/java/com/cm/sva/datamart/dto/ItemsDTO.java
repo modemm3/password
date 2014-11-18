@@ -55,5 +55,9 @@ public class ItemsDTO implements DTO{
 	public String getName() {
 		return value;
 	}
+
+    public String getImage() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 	
 }
