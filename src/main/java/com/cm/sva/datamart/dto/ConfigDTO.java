@@ -7,18 +7,19 @@ public class ConfigDTO implements DTO{
 	private String description;
 	private Boolean secret;
         private String image;
-	
+	private Boolean parent;
 	public ConfigDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ConfigDTO(String id, String name, String description, Boolean secret,String image) {
+	public ConfigDTO(String id, String name, String description, Boolean secret,String image,Boolean parent) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.secret = secret;
                 this.image=image;
+                this.parent=parent;
 	}
 
 	public String getId() {
@@ -53,6 +54,14 @@ public class ConfigDTO implements DTO{
     public void setImage(String image) {
         this.image = image;
     }
+
+    public Boolean getParent() {
+        return parent;
+    }
+
+    public void setParent(Boolean parent) {
+        this.parent = parent;
+    }
         
 	@Override
 	public String toString() {
@@ -67,6 +76,8 @@ public class ConfigDTO implements DTO{
 		builder.append(secret);
 		builder.append(", image=");
 		builder.append(image);
+		builder.append(", parent=");
+		builder.append(parent);
                 builder.append("]");
 		return builder.toString();
 	}

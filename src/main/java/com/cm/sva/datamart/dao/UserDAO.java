@@ -1,5 +1,6 @@
 package com.cm.sva.datamart.dao;
 
+import com.cm.sva.datamart.dao.connection.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,6 +30,11 @@ public class UserDAO {
 		catch(Exception ex){
 			throw new Exception("Error ",ex);
 		}
+                finally{
+                    ConnectionManager.releaseResources(result, pst);
+                    ConnectionManager.closeConnection(conn);
+                }
+                
 		return userDTO;
 	}
 }

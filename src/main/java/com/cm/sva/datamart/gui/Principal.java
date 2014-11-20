@@ -74,6 +74,9 @@ public class Principal extends javax.swing.JFrame {
         panelNice5 = new org.edisoncor.gui.panel.PanelNice();
         panelNice6 = new org.edisoncor.gui.panel.PanelNice();
         panelNice1 = new org.edisoncor.gui.panel.PanelNice();
+        panelNice7 = new org.edisoncor.gui.panel.PanelNice();
+        panelNice8 = new org.edisoncor.gui.panel.PanelNice();
+        buttonRound1 = new org.edisoncor.gui.button.ButtonRound();
         panelNice2 = new org.edisoncor.gui.panel.PanelNice();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,7 +93,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelNice3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelNice4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelNice5, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE))
+                    .addComponent(panelNice5, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelNice3Layout.setVerticalGroup(
@@ -103,7 +106,13 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panelNice1.setLayout(new java.awt.GridLayout(20, 1));
+        panelNice7.setLayout(new java.awt.GridLayout(20, 1));
+        panelNice1.add(panelNice7, java.awt.BorderLayout.CENTER);
+
+        buttonRound1.setText("Add");
+        panelNice8.add(buttonRound1, java.awt.BorderLayout.CENTER);
+
+        panelNice1.add(panelNice8, java.awt.BorderLayout.PAGE_END);
 
         panelNice2.setLayout(new java.awt.GridLayout(20, 1, 10, 10));
 
@@ -141,11 +150,11 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelNice3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelNice6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panelNice3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelNice6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -188,14 +197,14 @@ public class Principal extends javax.swing.JFrame {
     }
     private void config(){
     	final ConfigDAO configDAO= new ConfigDAO();
-    	panelNice1.removeAll();
+    	panelNice7.removeAll();
     	try {
 			List<ConfigDTO> listConfigDTO= configDAO.getListConfig(2);
 	        for(final ConfigDTO configDTO:listConfigDTO){
 	        	System.out.println("created config");
 	        	Label config= new Label(configDTO);
 	        	config.addMouseListener(new EventsConfig());
-	        	panelNice1.add(config);	
+	        	panelNice7.add(config);	
 	        }
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -347,11 +356,14 @@ public class Principal extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.edisoncor.gui.button.ButtonRound buttonRound1;
     private org.edisoncor.gui.panel.PanelNice panelNice1;
     private org.edisoncor.gui.panel.PanelNice panelNice2;
     private org.edisoncor.gui.panel.PanelNice panelNice3;
     private org.edisoncor.gui.panel.PanelNice panelNice4;
     private org.edisoncor.gui.panel.PanelNice panelNice5;
     private org.edisoncor.gui.panel.PanelNice panelNice6;
+    private org.edisoncor.gui.panel.PanelNice panelNice7;
+    private org.edisoncor.gui.panel.PanelNice panelNice8;
     // End of variables declaration//GEN-END:variables
 }

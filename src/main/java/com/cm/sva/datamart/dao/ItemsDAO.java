@@ -1,5 +1,6 @@
 package com.cm.sva.datamart.dao;
 
+import com.cm.sva.datamart.dao.connection.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,6 +35,11 @@ public class ItemsDAO {
 		catch(Exception ex){
 			throw new Exception("Error ",ex);
 		}
+                finally{
+                    ConnectionManager.releaseResources(result, pst);
+                    ConnectionManager.closeConnection(conn);
+                }
+                
 		return listItemsDTO;
 	}
 	public List<ItemsDTO> getItemById(Integer itemId) throws Exception{
@@ -59,6 +65,11 @@ public class ItemsDAO {
 		catch(Exception ex){
 			throw new Exception("Error ",ex);
 		}
+                finally{
+                    ConnectionManager.releaseResources(result, pst);
+                    ConnectionManager.closeConnection(conn);
+                }
+                
 		return listItemsDTO;
 	}
 }
