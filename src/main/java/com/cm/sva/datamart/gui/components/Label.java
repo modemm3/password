@@ -19,7 +19,8 @@ public class Label extends LabelTask {
                 this.setOpaque(true);
                 if(o.getImage()!=null)
                     try{
-                this.setIcon(new javax.swing.ImageIcon(getClass().getResource(o.getImage())));
+                        if(!o.getImage().equals(""))
+                            this.setIcon(new javax.swing.ImageIcon(getClass().getResource(o.getImage())));
                     }
                 catch(Exception ex){
                 }

@@ -108,7 +108,7 @@ public class ConfigDAO {
                         String[] split = maxId.split("\\ ");
                         int id=split[0]!=null?Integer.parseInt(split[0])+1:1;
                         int i=0;
-                        int count=1;
+                        int count=0;
                         for(ConfigDTO configDTO:listConfiDTO){
                             if(i==0)
                                 pst.setString(1, leftPad(id));
